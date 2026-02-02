@@ -13,6 +13,8 @@ services:
     depends_on:
       - redis
       - postgres
+    security_opt:
+      - no-new-privileges:true
     environment:
       - SERVICE_URL_EVO_8080
       - SERVER_URL=$SERVICE_URL_EVO
