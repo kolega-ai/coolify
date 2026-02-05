@@ -3,6 +3,7 @@
 namespace App\Livewire\Source\Github;
 
 use App\Models\GithubApp;
+use App\Rules\ValidGithubUrl;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 
@@ -37,8 +38,8 @@ class Create extends Component
             $this->validate([
                 'name' => 'required|string',
                 'organization' => 'nullable|string',
-                'api_url' => 'required|string',
-                'html_url' => 'required|string',
+                'api_url' => ['required', 'string', new ValidGithubUrl],
+                'html_url' => ['required', 'string', new ValidGithubUrl],
                 'custom_user' => 'required|string',
                 'custom_port' => 'required|int',
                 'is_system_wide' => 'required|bool',
