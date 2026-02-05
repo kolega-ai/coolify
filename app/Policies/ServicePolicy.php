@@ -28,8 +28,7 @@ class ServicePolicy
      */
     public function create(User $user): bool
     {
-        // return $user->isAdmin();
-        return true;
+        return $user->isAdmin();
     }
 
     /**
@@ -42,8 +41,7 @@ class ServicePolicy
             return false;
         }
 
-        // return $user->isAdmin() && $user->teams->contains('id', $team->id);
-        return true;
+        return $user->isAdmin() && $user->teams->contains('id', $team->id);
     }
 
     /**
@@ -51,12 +49,11 @@ class ServicePolicy
      */
     public function delete(User $user, Service $service): bool
     {
-        // if ($user->isAdmin()) {
-        //    return true;
-        // }
+        if ($user->isAdmin()) {
+            return true;
+        }
 
-        // return false;
-        return true;
+        return false;
     }
 
     /**
@@ -64,7 +61,6 @@ class ServicePolicy
      */
     public function restore(User $user, Service $service): bool
     {
-        // return true;
         return true;
     }
 
@@ -73,12 +69,11 @@ class ServicePolicy
      */
     public function forceDelete(User $user, Service $service): bool
     {
-        // if ($user->isAdmin()) {
-        //    return true;
-        // }
+        if ($user->isAdmin()) {
+            return true;
+        }
 
-        // return false;
-        return true;
+        return false;
     }
 
     public function stop(User $user, Service $service): bool
@@ -88,8 +83,7 @@ class ServicePolicy
             return false;
         }
 
-        // return $user->teams->contains('id', $team->id);
-        return true;
+        return $user->teams->contains('id', $team->id);
     }
 
     /**
@@ -102,8 +96,7 @@ class ServicePolicy
             return false;
         }
 
-        // return $user->isAdmin() && $user->teams->contains('id', $team->id);
-        return true;
+        return $user->isAdmin() && $user->teams->contains('id', $team->id);
     }
 
     /**
@@ -116,13 +109,11 @@ class ServicePolicy
             return false;
         }
 
-        // return $user->teams->contains('id', $team->id);
-        return true;
+        return $user->teams->contains('id', $team->id);
     }
 
     public function accessTerminal(User $user, Service $service): bool
     {
-        // return $user->isAdmin() || $user->teams->contains('id', $service->team()->id);
-        return true;
+        return $user->isAdmin() || $user->teams->contains('id', $service->team()->id);
     }
 }

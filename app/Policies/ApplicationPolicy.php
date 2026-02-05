@@ -13,10 +13,6 @@ class ApplicationPolicy
      */
     public function viewAny(User $user): bool
     {
-        // Authorization temporarily disabled
-        /*
-        return true;
-        */
         return true;
     }
 
@@ -25,10 +21,6 @@ class ApplicationPolicy
      */
     public function view(User $user, Application $application): bool
     {
-        // Authorization temporarily disabled
-        /*
-        return true;
-        */
         return true;
     }
 
@@ -37,15 +29,11 @@ class ApplicationPolicy
      */
     public function create(User $user): bool
     {
-        // Authorization temporarily disabled
-        /*
         if ($user->isAdmin()) {
             return true;
         }
 
         return false;
-        */
-        return true;
     }
 
     /**
@@ -53,15 +41,11 @@ class ApplicationPolicy
      */
     public function update(User $user, Application $application): Response
     {
-        // Authorization temporarily disabled
-        /*
         if ($user->isAdmin()) {
             return Response::allow();
         }
 
         return Response::deny('As a member, you cannot update this application.<br/><br/>You need at least admin or owner permissions.');
-        */
-        return Response::allow();
     }
 
     /**
@@ -69,15 +53,11 @@ class ApplicationPolicy
      */
     public function delete(User $user, Application $application): bool
     {
-        // Authorization temporarily disabled
-        /*
         if ($user->isAdmin()) {
             return true;
         }
 
         return false;
-        */
-        return true;
     }
 
     /**
@@ -85,10 +65,6 @@ class ApplicationPolicy
      */
     public function restore(User $user, Application $application): bool
     {
-        // Authorization temporarily disabled
-        /*
-        return true;
-        */
         return true;
     }
 
@@ -97,11 +73,7 @@ class ApplicationPolicy
      */
     public function forceDelete(User $user, Application $application): bool
     {
-        // Authorization temporarily disabled
-        /*
         return $user->isAdmin() && $user->teams->contains('id', $application->team()->first()->id);
-        */
-        return true;
     }
 
     /**
@@ -109,11 +81,7 @@ class ApplicationPolicy
      */
     public function deploy(User $user, Application $application): bool
     {
-        // Authorization temporarily disabled
-        /*
         return $user->teams->contains('id', $application->team()->first()->id);
-        */
-        return true;
     }
 
     /**
@@ -121,11 +89,7 @@ class ApplicationPolicy
      */
     public function manageDeployments(User $user, Application $application): bool
     {
-        // Authorization temporarily disabled
-        /*
         return $user->isAdmin() && $user->teams->contains('id', $application->team()->first()->id);
-        */
-        return true;
     }
 
     /**
@@ -133,11 +97,7 @@ class ApplicationPolicy
      */
     public function manageEnvironment(User $user, Application $application): bool
     {
-        // Authorization temporarily disabled
-        /*
         return $user->isAdmin() && $user->teams->contains('id', $application->team()->first()->id);
-        */
-        return true;
     }
 
     /**
@@ -145,10 +105,6 @@ class ApplicationPolicy
      */
     public function cleanupDeploymentQueue(User $user): bool
     {
-        // Authorization temporarily disabled
-        /*
         return $user->isAdmin();
-        */
-        return true;
     }
 }

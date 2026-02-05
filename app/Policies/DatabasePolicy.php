@@ -20,8 +20,7 @@ class DatabasePolicy
      */
     public function view(User $user, $database): bool
     {
-        // return $user->teams->contains('id', $database->team()->first()->id);
-        return true;
+        return $user->teams->contains('id', $database->team()->first()->id);
     }
 
     /**
@@ -29,8 +28,7 @@ class DatabasePolicy
      */
     public function create(User $user): bool
     {
-        // return $user->isAdmin();
-        return true;
+        return $user->isAdmin();
     }
 
     /**
@@ -38,12 +36,11 @@ class DatabasePolicy
      */
     public function update(User $user, $database)
     {
-        // if ($user->isAdmin() && $user->teams->contains('id', $database->team()->first()->id)) {
-        //    return Response::allow();
-        // }
+        if ($user->isAdmin() && $user->teams->contains('id', $database->team()->first()->id)) {
+            return Response::allow();
+        }
 
-        // return Response::deny('As a member, you cannot update this database.<br/><br/>You need at least admin or owner permissions.');
-        return true;
+        return Response::deny('As a member, you cannot update this database.<br/><br/>You need at least admin or owner permissions.');
     }
 
     /**
@@ -51,8 +48,7 @@ class DatabasePolicy
      */
     public function delete(User $user, $database): bool
     {
-        // return $user->isAdmin() && $user->teams->contains('id', $database->team()->first()->id);
-        return true;
+        return $user->isAdmin() && $user->teams->contains('id', $database->team()->first()->id);
     }
 
     /**
@@ -60,8 +56,7 @@ class DatabasePolicy
      */
     public function restore(User $user, $database): bool
     {
-        // return $user->isAdmin() && $user->teams->contains('id', $database->team()->first()->id);
-        return true;
+        return $user->isAdmin() && $user->teams->contains('id', $database->team()->first()->id);
     }
 
     /**
@@ -69,8 +64,7 @@ class DatabasePolicy
      */
     public function forceDelete(User $user, $database): bool
     {
-        // return $user->isAdmin() && $user->teams->contains('id', $database->team()->first()->id);
-        return true;
+        return $user->isAdmin() && $user->teams->contains('id', $database->team()->first()->id);
     }
 
     /**
@@ -78,8 +72,7 @@ class DatabasePolicy
      */
     public function manage(User $user, $database): bool
     {
-        // return $user->isAdmin() && $user->teams->contains('id', $database->team()->first()->id);
-        return true;
+        return $user->isAdmin() && $user->teams->contains('id', $database->team()->first()->id);
     }
 
     /**
@@ -87,8 +80,7 @@ class DatabasePolicy
      */
     public function manageBackups(User $user, $database): bool
     {
-        // return $user->isAdmin() && $user->teams->contains('id', $database->team()->first()->id);
-        return true;
+        return $user->isAdmin() && $user->teams->contains('id', $database->team()->first()->id);
     }
 
     /**
@@ -96,7 +88,6 @@ class DatabasePolicy
      */
     public function manageEnvironment(User $user, $database): bool
     {
-        // return $user->isAdmin() && $user->teams->contains('id', $database->team()->first()->id);
-        return true;
+        return $user->isAdmin() && $user->teams->contains('id', $database->team()->first()->id);
     }
 }
