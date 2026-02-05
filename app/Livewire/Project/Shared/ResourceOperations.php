@@ -56,6 +56,12 @@ class ResourceOperations extends Component
         if (! $new_destination) {
             return $this->addError('destination_id', 'Destination not found.');
         }
+
+        // Verify destination belongs to current team
+        if ($new_destination->server->team_id !== currentTeam()->id) {
+            return $this->addError('destination_id', 'You do not have permission to clone to this destination.');
+        }
+
         $uuid = (string) new Cuid2;
         $server = $new_destination->server;
 
@@ -353,6 +359,12 @@ class ResourceOperations extends Component
         try {
             $this->authorize('update', $this->resource);
             $new_environment = Environment::findOrFail($environment_id);
+
+            // Verify environment belongs to current team
+            if ($new_environment->project->team_id !== currentTeam()->id) {
+                return $this->addError('environment_id', 'You do not have permission to move to this environment.');
+            }
+
             $this->resource->update([
                 'environment_id' => $environment_id,
             ]);
